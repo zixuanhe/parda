@@ -23,10 +23,10 @@ B) Config and compile
 Current program only tests with gcc and icc. 
 Edit the first three lines of makefile. 
 If machine has mpicc, give MPI=1 option to enable mpi parallelism. 
-Otherwise, give OMP=1.
-#DEBUG = 1
-#OMP = 1
-#MPI = 1
+Otherwise, give OMP=1. If use only sequential algorithm, comments both OMP and MPI.
+DEBUG = 1
+OMP = 1
+MPI = 1
 
 C) Execution instructions
 1) Sequential execution:
