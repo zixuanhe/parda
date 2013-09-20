@@ -34,6 +34,17 @@ B) Execution instructions
 
 $ ./parda.x --help to see how to run with different flags and run with sequential algorithm. 
 
+Execution arguments
+--input: the input trace file name.
+
+--lines: the total number of lines in the input trace file. 
+
+--enable-omp: enable program to parallelly run with OpenMP threads.
+
+--enable-mpi: enable program to parallelly run with MPI.
+
+--enable-seperate: Seperate the input file to prepare for running with paralellization.
+
 1) Sequential execution:
 
 $ ./parda.x --input=normal_137979.trace --lines=137979 > seq.hist 
