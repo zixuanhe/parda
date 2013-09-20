@@ -20,6 +20,13 @@ $ make
 $ ./parda.x --help to see how to run with different flags and run with sequential algorithm. 
 
 B) Config and compile
+Current program only tests with gcc and icc. 
+Edit the first three lines of makefile. 
+If machine has mpicc, give MPI=1 option to enable mpi parallelism. 
+Otherwise, give OMP=1.
+#DEBUG = 1
+#OMP = 1
+#MPI = 1
 
 C) Execution instructions
 1) Sequential execution:
@@ -36,3 +43,22 @@ $ ./parda.x --enable-omp --input=normal_137979.trace --lines=137979 --threads=4 
 3) Run parda with MPI
 mpirun -np 4 ./parda.x --input=normal_137979.trace --lines=137979 --enable-mpi
 
+
+Parda is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Parda is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+Author: Qingpeng Niu
+Contact: niuqingpeng at gmail.com
+
+Documententation
+Related publications:
+PARDA: A Fast Parallel Reuse Distance Analysis Algorithm
+Qingpeng Niu, James Dinan, Qingda Lu and P. Sadayappan.
+IEEE IPDPS (IPDPS'12), May 2012, Shanghai, China.
