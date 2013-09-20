@@ -58,6 +58,7 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 Author: Qingpeng Niu
+
 Contact: niuqingpeng at gmail.com
 
 Documententation
