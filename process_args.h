@@ -13,7 +13,7 @@ extern int is_omp;
 extern int is_mpi;
 extern int is_seperate;
 extern int is_binary;
-extern char inputFileName[20];
+extern char inputFileName[200];
 extern long lines;
 extern int threads;
 extern int buffersize;
