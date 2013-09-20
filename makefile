@@ -1,0 +1,59 @@
+CC      = mpicc
+BASE=icc
+ifeq (gcc, $(findstring gcc,$(shell mpicc -show)))
+BASE=gcc
+endif
+
+#DEBUG = 1
+OMP = 1
+MPI = 1
+
+
+CFLAGS  = -Wall 
+ifdef DEBUG
+CFLAGS+=-g
+else
+CFLAGS  = -O2
+endif
+CFLAGS += $(shell pkg-config --cflags glib-2.0)
+LIBS    = $(shell pkg-config --libs glib-2.0 --libs gthread-2.0)
+OBJS+= main.o splay.o parda.o parda_print.o narray.o process_args.o seperate.o
+HEADERS= splay.h parda.h narray.h process_args.h seperate.h
+
+ifdef OMP
+OBJS+= parda_omp.o
+HEADERS+= parda_omp.h
+ifeq ($(BASE),icc)
+CFLAGS+=-openmp
+else
+CFLAGS+=-fopenmp
+endif
+endif
+
+ifeq ($(CC),mpicc)
+OBJS+= parda_mpi.o
+HEADERS+= parda_mpi.h
+endif
+
+ifeq ($(BASE),icc)
+CFLAGS+=-limf
+endif
+
+SOURCES=$(subst .o,.c, $(OBJS) )
+EXE=parda.x
+.PHONY: all clean gnuplots run
+all: $(EXE)
+
+$(EXE): $(OBJS)
+	$(CC) $(CFLAGS) -o $@ $+ $(LIBS)
+	cp -f parda.x ../ls
+$(OBJS):$(HEADERS) makefile
+%.d: %.c
+	set -e; rm -f $@; \
+	$(CC) -M $(CPPFLAGS) $< > $@.$$$$; \
+        sed 's,\($*\)\.o[ :]*,\1.o $@ : ,g' < $@.$$$$ > $@; \
+        rm -f $@.$$$$
+include $(sources:.c=.d)
+clean:
+	rm -f $(EXE) *.o 
+run:
