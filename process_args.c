@@ -5,7 +5,7 @@ int is_mpi = 0;
 int is_seperate = 0;
 int is_binary = 0;
 int threads = 1;
-char inputFileName[20] = "d.in";
+char inputFileName[200] = "d.in";
 long lines = -1;
 int buffersize = 10000;
 
