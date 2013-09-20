@@ -62,7 +62,10 @@ Author: Qingpeng Niu
 Contact: niuqingpeng at gmail.com
 
 Documententation
+
 Related publications:
+
 PARDA: A Fast Parallel Reuse Distance Analysis Algorithm
+
 Qingpeng Niu, James Dinan, Qingda Lu and P. Sadayappan.
 IEEE IPDPS (IPDPS'12), May 2012, Shanghai, China.
