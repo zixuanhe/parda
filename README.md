@@ -30,7 +30,7 @@ MPI = 1
 
 $make
 
-C) Execution instructions
+B) Execution instructions
 
 $ ./parda.x --help to see how to run with different flags and run with sequential algorithm. 
 
