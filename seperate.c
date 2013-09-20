@@ -29,7 +29,7 @@ long seperate_textfile(char filename[], int processor_number, long lines) {
     tstart = parda_low(i, processor_number, sum);
     tend = parda_high(i, processor_number, sum);
     for ( tim = tstart; tim <= tend; ++tim) {
-      int fo = fscanf(fp, "%s", input);
+      assert(fscanf(fp, "%s", input) != EOF);
       int len = strlen(input);
       if(len >= 20)  {
         printf("line %ld length is larger than SLEN, please make sure all line less than SLEN\n",tim+1);
@@ -45,7 +45,6 @@ long seperate_textfile(char filename[], int processor_number, long lines) {
 
 long seperate_binaryfile(char filename[],int processor_number,long lines) {
   FILE* fp = fopen(filename,"rb");
-  char input[20];
   long sum = lines;
   int i;
   long tstart, tend;

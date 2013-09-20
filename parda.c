@@ -259,7 +259,7 @@ void parda_input_with_textfilepointer(FILE* fp, program_data_t* pdt, long begin,
   HKEY input;
   long i;
   for(i = begin; i <= end; i++) {
-    fscanf(fp, "%s", input);
+    assert(fscanf(fp, "%s", input) != EOF);
     DEBUG(printf("%s %d\n", input, i);)
     process_one_access(input, pdt, i);
   }

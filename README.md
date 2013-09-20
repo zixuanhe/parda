@@ -3,4 +3,29 @@ This analysis so far has been restricted to ofﬂine use due to the high cost, o
 
 This program is a Parda implementation on file input. parda omp implementation is mainly in parda_omp.c and parda_omp.h. 
 
-How to run parda with OpenMp. Step0: parda use glib standard linux library. If on ubuntu system just sudo apt-get install glib Make sure you can run pkg-config before make parda. niuq@niuq:~/Documents/tutorial/parda$ pkg-config Must specify package names on the command line Step1: Use svn get parda code and small test case(normal_137979.trace is text file and binary_137979.trace is the binary file). This two files record trace data of ls command. niuq@niuq:~/Documents/tutorial$ cd parda/ niuq@niuq:~/Documents/tutorial/parda$ make niuq@niuq:~/Documents/tutorial/parda$ head -n10 normal_137979.trace Step2: Do ./parda --help to see how to run with different flags and run with sequential algorithm. niuq@niuq:~/Documents/tutorial/parda$ ./parda.x --help niuq@niuq:~/Documents/tutorial/parda$ ./parda.x --input=normal_137979.trace --lines=137979 > seq.hist Step3: Run parda with --enable-omp flag. Before run with omp we need to seperate the trace files to threads number. For example if we want to run with 4 threads. niuq@niuq:~/Documents/tutorial/parda$ ./parda.x --enable-seperate --input=normal_137979.trace --lines=137979 --threads=4 We will find 4 seperated trace files. 4_normal_137979.trace_p0.txt 4_normal_137979.trace_p1.txt 4_normal_137979.trace_p2.txt 4_normal_137979.trace_p3.txt 4_normal_343684.trace_p0.txt Finaly we can run niuq@niuq:~/Documents/tutorial/parda$ ./parda.x --enable-omp --input=normal_137979.trace --lines=137979 --threads=4 > omp.re Step4: Do a check on the correctness of OpenMp version of parda. niuq@niuq:~/Documents/tutorial/parda$ diff seq.hist omp.re 1d0 < text open haha 29560,29564c29559,29563 < seq < init time is 0.003108 < input time is 0.094887 < print time is 0.025838 < free time is 0.004469 --- > omp > init time is 0.012636 > input time is 0.108633 > print time is 0.031194 > free time is 0.010482
+Instructions to run file input Parda. 
+
+Step 0: parda use glib standard linux library. If on ubuntu system just execute following sudo command.
+sudo apt-get install glib
+
+Step 1: Download sample trace files from project git web page. 
+normal_137979.trace is text file and 
+binary_137979.trace is the binary file.
+This two files record trace data of ls command. 
+
+Step 2: 
+$ cd /path/to/parda
+$ make
+$ ./parda.x --help to see how to run with different flags and run with sequential algorithm. 
+
+Step 3:
+$ ./parda.x --input=normal_137979.trace --lines=137979 > seq.hist 
+
+Step4: Run parda with OpenMP --enable-omp flag. 
+Before run with omp we need to seperate the trace files to threads number. For example if we want to run with 4 threads. 
+$ ./parda.x --enable-seperate --input=normal_137979.trace --lines=137979 --threads=4 
+We will find 4 seperated trace files. 
+4_normal_137979.trace_p0.txt 4_normal_137979.trace_p1.txt 
+4_normal_137979.trace_p2.txt 4_normal_137979.trace_p3.txt 
+$ ./parda.x --enable-omp --input=normal_137979.trace --lines=137979 --threads=4 > omp.re 
+

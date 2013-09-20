@@ -22,22 +22,12 @@ traces.
   Qingpeng Niu
 */
 
-#define enable_omp
-#define enable_mpi
-
 #ifdef enable_mpi
 #ifdef enable_omp
 #define enable_hybrid
 #endif
 #endif
-#pragma warning(disable:556)
-#pragma warning(disable:593)
-#pragma warning(disable:1338)
-#pragma warning(disable:1418)
-#pragma warning(disable:981)
-#pragma warning(disable:869)
-#pragma warning(disable:167)
-#pragma warning(disable:177)
+
 #define enable_timing
 #ifdef enable_timing
 #define PTIME(cmd) cmd

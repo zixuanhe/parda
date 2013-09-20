@@ -1,19 +1,24 @@
-CC      = mpicc
-BASE=icc
-ifeq (gcc, $(findstring gcc,$(shell mpicc -show)))
-BASE=gcc
-endif
-
 #DEBUG = 1
 OMP = 1
 MPI = 1
 
+BASE=gcc
+ifeq (icc, $(findstring icc,$(shell mpicc -show)))
+BASE=icc
+endif
 
-CFLAGS  = -Wall 
-ifdef DEBUG
-CFLAGS+=-g
+ifdef MPI
+CC=mpicc
+CFLAGS+=-Denable_mpi
 else
-CFLAGS  = -O2
+CC=$(BASE)
+endif
+
+CFLAGS += -Wall 
+ifdef DEBUG
+CFLAGS+= -g
+else
+CFLAGS+= -O2
 endif
 CFLAGS += $(shell pkg-config --cflags glib-2.0)
 LIBS    = $(shell pkg-config --libs glib-2.0 --libs gthread-2.0)
@@ -23,6 +28,7 @@ HEADERS= splay.h parda.h narray.h process_args.h seperate.h
 ifdef OMP
 OBJS+= parda_omp.o
 HEADERS+= parda_omp.h
+CFLAGS+=-Denable_omp
 ifeq ($(BASE),icc)
 CFLAGS+=-openmp
 else

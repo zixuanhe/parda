@@ -62,7 +62,6 @@ int parda_MPI_IO_binary_input(program_data_t *pdt, char filename[], const proces
 {
   MPI_File thefile;
   MPI_Status status;
-  MPI_Offset filesize;
   MPI_File_open(MPI_COMM_WORLD, filename, MPI_MODE_RDONLY, MPI_INFO_NULL, &thefile);
   MPI_File_set_view(thefile, pit->tstart*sizeof(void*), MPI_LONG, MPI_LONG, "native", MPI_INFO_NULL);
 #ifdef ENABLE_PROFILING
