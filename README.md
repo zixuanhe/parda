@@ -5,7 +5,8 @@ This program is a Parda implementation on file input. parda omp implementation i
 
 Instructions to run file input Parda. 
 
-A) Setup
+A) Setup and compile
+
 Step 0: parda use glib standard linux library. If on ubuntu system just execute following sudo command.
 sudo apt-get install glib
 
@@ -16,23 +17,29 @@ This two files record trace data of 'ls' command.
 
 Step 2: 
 $ cd /path/to/parda
-$ make
-$ ./parda.x --help to see how to run with different flags and run with sequential algorithm. 
-
-B) Config and compile
 Current program only tests with gcc and icc. 
 Edit the first three lines of makefile. 
 If machine has mpicc, give MPI=1 option to enable mpi parallelism. 
 Otherwise, give OMP=1. If use only sequential algorithm, comments both OMP and MPI.
+
 DEBUG = 1
+
 OMP = 1
+
 MPI = 1
 
+$make
+
 C) Execution instructions
+
+$ ./parda.x --help to see how to run with different flags and run with sequential algorithm. 
+
 1) Sequential execution:
+
 $ ./parda.x --input=normal_137979.trace --lines=137979 > seq.hist 
 
 2) Run parda with OpenMP --enable-omp flag. 
+
 Before running with omp we need to seperate the trace files to threads number. For example if we want to run with 4 threads. 
 
 $ ./parda.x --enable-seperate --input=normal_137979.trace --lines=137979 --threads=4 
@@ -45,7 +52,6 @@ $ ./parda.x --enable-omp --input=normal_137979.trace --lines=137979 --threads=4 
 3) Run parda with MPI
 
 mpirun -np 4 ./parda.x --input=normal_137979.trace --lines=137979 --enable-mpi
-
 
 Parda is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
