@@ -59,11 +59,9 @@ Tree * splay (T i, Tree *t)
 {
     Tree N, *l, *r, *y;
     T comp,l_size, r_size;
-    T root_size=0;
     if (t == NULL) return t;
     N.left = N.right = NULL;
     l = r = &N;
-    root_size = node_size(t);
     l_size = r_size = 0;
  
     for (;;) {

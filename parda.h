@@ -139,8 +139,6 @@ static inline char* parda_generate_pfilename(char filename[], int pid, int psize
 static inline void process_one_access(char* input, program_data_t* pdt, const long tim) {
 		int distance;
 		int *lookup;
-		int length;
-		length = strlen(input);
 		lookup = g_hash_table_lookup(pdt->gh, input);
     //printf("gh=%p process_one\n",pdt->gh);
 		// Cold start: Not in the list yet

@@ -179,7 +179,7 @@ void parda_mpi_stackdist(char* inputFileName, long lines, int processors, int ar
   MPI_Finalize();
 }
 
-#ifdef enable_omp
+#if defined(enable_omp) && defined(enable_mpi)
 void parda_hybrid_stackdist(char* inputFileName, long lines, int processors, int argc, char **argv) {
   int pid, psize;
   program_data_t pdt;
@@ -190,9 +190,9 @@ void parda_hybrid_stackdist(char* inputFileName, long lines, int processors, int
   MPI_Comm_rank(MPI_COMM_WORLD, &pid);
   MPI_Comm_size(MPI_COMM_WORLD, &psize);
   DEBUG(if(pid == 0))
-    DEBUG(printf("enter hybrid\n");)
+  DEBUG(printf("enter hybrid\n");)
 
-    psum = lines;
+  psum = lines;
   MPI_Bcast(&psum, 1, MPI_INT, 0, MPI_COMM_WORLD);
   pit = parda_get_processor_info(pid, psize, psum);
   program_data_t* pdt_a = parda_omp_init(threads);

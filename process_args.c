@@ -76,7 +76,7 @@ int process_args(int argc, char **argv) {
         break;
       case 'h':
         printf("case 1: seperate file\n");
-        printf("./parda.x --enable-seperate --input=normal_343684.trace --lines=343684 --threads=4\n");
+        printf("./parda.x --enable-seperate --input=normal_137979.trace --lines=137979 --threads=4\n");
         printf("case 2: run with sequential algorithm\n");
         printf("./parda.x --input=normal_343684.trace --lines=343684\n");
         printf("case 3: run with OpenMp flag\n");

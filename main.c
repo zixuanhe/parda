@@ -34,7 +34,7 @@ int main(int argc, char **argv)
 #endif
     } else if (is_omp == 1 && is_mpi == 1) {
         DEBUG(printf("This is hybrid stackdist\n");)
-#ifdef enable_mpi
+#if defined(enable_omp) && defined(enable_mpi)
         parda_hybrid_stackdist(inputFileName, lines, threads, argc, argv);
 #else
         printf("hybridis not enabled, try to define enable_omp and enable_mpi and add MPI and OMP variable in Makefile\n");

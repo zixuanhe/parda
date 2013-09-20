@@ -1,6 +1,6 @@
 #DEBUG = 1
-OMP = 1
-MPI = 1
+#OMP = 1
+#MPI = 1
 
 BASE=gcc
 ifeq (icc, $(findstring icc,$(shell mpicc -show)))
@@ -16,7 +16,7 @@ endif
 
 CFLAGS += -Wall 
 ifdef DEBUG
-CFLAGS+= -g
+CFLAGS+= -g -O0
 else
 CFLAGS+= -O2
 endif
@@ -39,6 +39,7 @@ endif
 ifeq ($(CC),mpicc)
 OBJS+= parda_mpi.o
 HEADERS+= parda_mpi.h
+CFLAGS+= -Denable_mpi
 endif
 
 ifeq ($(BASE),icc)
