@@ -1,18 +1,18 @@
 #DEBUG = 1
 #OMP = 1
-#MPI = 1
+#MPI = 0
 
 BASE=gcc
-ifeq (icc, $(findstring icc,$(shell mpicc -show)))
-BASE=icc
-endif
+#ifeq (icc, $(findstring icc,$(shell mpicc -show)))
+#BASE=icc
+#endif
 
-ifdef MPI
-CC=mpicc
-CFLAGS+=-Denable_mpi
-else
+#ifdef MPI
+#CC=mpicc
+#CFLAGS+=-Denable_mpi
+#else
 CC=$(BASE)
-endif
+#endif
 
 CFLAGS += -Wall 
 ifdef DEBUG
