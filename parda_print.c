@@ -67,8 +67,9 @@ void parda_print_histogram(const unsigned* histogram) {
 
   for (i = 0; i <= last_bucket; i++) {
     cum += histogram[i];
-    printf("%6d\t%9u\t%0.8lf\t%9llu\t%0.8lf\n", i, histogram[i],
-        histogram[i] / (double)sum, cum, cum / (double)sum);
+    if (histogram[i]) 
+        printf("%6d\t%9u\t%0.8lf\t%9llu\t%0.8lf\n", i, histogram[i],
+            histogram[i] / (double)sum, cum, cum / (double)sum);
   }
 
   cum += histogram[B_OVFL];
